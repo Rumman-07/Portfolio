@@ -61,5 +61,10 @@ One-click download button
 
 ## 🔗Link🔗
 
-https://rumman-07.github.io/Portfolio/
+# https://rumman-07.github.io/Portfolio/
+
+### or
+
+# https://rummanportfolio007.netlify.app/
+
 ---
