@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional portfolio of Rumman Ahamed Khan — Computer Science Engineering student focused on cybersecurity, web development and software projects." />
+  <meta name="author" content="Rumman Ahamed Khan" />
+  <title>Rumman Ahamed Khan | Computer Science & Cybersecurity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07070b;
+      --bg-soft: #0d0d14;
+      --surface: rgba(17, 17, 26, .82);
+      --surface-2: rgba(24, 24, 36, .88);
+      --border: rgba(255,255,255,.09);
+      --border-strong: rgba(139,92,246,.35);
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --muted-2: #71717a;
+      --accent: #8b5cf6;
+      --accent-2: #6366f1;
+      --accent-soft: rgba(139,92,246,.13);
+      --success: #22c55e;
+      --shadow: 0 30px 90px rgba(0,0,0,.38);
+      --radius: 22px;
+    }
+
+    body.light {
+      --bg: #f5f5f7;
+      --bg-soft: #ffffff;
+      --surface: rgba(255,255,255,.84);
+      --surface-2: rgba(250,250,252,.94);
+      --border: rgba(24,24,27,.09);
+      --border-strong: rgba(99,102,241,.28);
+      --text: #18181b;
+      --muted: #52525b;
+      --muted-2: #71717a;
+      --accent: #7c3aed;
+      --accent-2: #4f46e5;
+      --accent-soft: rgba(124,58,237,.09);
+      --shadow: 0 30px 80px rgba(24,24,27,.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(139,92,246,.13), transparent 28%),
+        radial-gradient(circle at 88% 88%, rgba(99,102,241,.10), transparent 30%),
+        var(--bg);
+      transition: background .3s ease, color .3s ease;
+      padding: 24px;
+    }
+
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    .app {
+      width: min(1180px, 100%);
+      margin: auto;
+      min-height: calc(100vh - 48px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .app::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(139,92,246,.10);
+      filter: blur(80px);
+      top: -240px;
+      right: -120px;
+      pointer-events: none;
+    }
+
+    header {
+      min-height: 78px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 28px rgba(99,102,241,.28);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy { min-width: 0; }
+    .brand-copy strong {
+      display: block;
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+    .brand-copy span {
+      color: var(--muted);
+      font-size: .74rem;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn, .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--muted);
+      border-radius: 12px;
+      min-height: 40px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: .2s ease;
+    }
+
+    .icon-btn:hover, .theme-btn:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .nav {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 12px;
+      padding: 10px 8px;
+      font-size: .78rem;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .nav-btn:hover { color: var(--text); background: var(--accent-soft); }
+    .nav-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 24px rgba(99,102,241,.22);
+    }
+
+    body.light .nav-btn.active { color: white; }
+
+    main { padding: 30px; }
+
+    .view { display: none; animation: enter .35s ease; }
+    .view.active { display: block; }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      min-height: 490px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px 10px 38px;
+    }
+
+    .hero-content { max-width: 760px; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .76rem;
+      margin-bottom: 22px;
+    }
+    .status i {
+      width: 7px;
+      height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.10);
+    }
+
+    .avatar {
+      width: 128px;
+      height: 128px;
+      margin: 0 auto 22px;
+      border-radius: 36px;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 24px 55px rgba(99,102,241,.20);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 33px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 4.1rem);
+      letter-spacing: -.055em;
+      line-height: 1.02;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #c4b5fd, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    body.light .hero h1 span {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-role {
+      margin-top: 14px;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .hero-desc {
+      margin: 16px auto 0;
+      max-width: 650px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: .9rem;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 28px rgba(99,102,241,.22);
+    }
+    .btn.secondary {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .mini-stats {
+      margin: 28px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 600px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .stat {
+      padding: 14px 8px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: .92rem; }
+    .stat span { color: var(--muted); font-size: .68rem; margin-top: 3px; display: block; }
+
+    .section-head { margin-bottom: 18px; }
+    .eyebrow {
+      color: var(--accent);
+      font: 600 .7rem "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+    .section-head h2 {
+      margin-top: 5px;
+      font-size: 1.55rem;
+      letter-spacing: -.035em;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: .82rem;
+      line-height: 1.6;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .card h3 { font-size: .95rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: .8rem; line-height: 1.7; }
+
+    .timeline { border-left: 1px solid var(--border-strong); padding-left: 16px; }
+    .timeline-item { position: relative; padding-bottom: 18px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      position: absolute;
+      left: -20px;
+      top: 6px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+    .timeline-title { font-size: .82rem; font-weight: 700; }
+    .timeline-meta { color: var(--accent); font-size: .7rem; margin-top: 3px; }
+    .timeline-text { color: var(--muted); font-size: .75rem; line-height: 1.55; margin-top: 5px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--accent-soft);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .7rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .project {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 18px;
+      padding: 17px;
+      transition: .2s ease;
+    }
+    .project:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-strong);
+      box-shadow: 0 18px 35px rgba(0,0,0,.12);
+    }
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .project-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .project h3 { font-size: .86rem; margin-top: 13px; }
+    .project p { color: var(--muted); font-size: .74rem; line-height: 1.6; margin-top: 6px; }
+    .project-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+    .project-tags span {
+      color: var(--muted-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 7px;
+      font-size: .63rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 14px;
+      margin-top: 9px;
+      transition: .2s ease;
+    }
+    .contact-link:hover { border-color: var(--border-strong); transform: translateX(2px); }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+      font-weight: 800; font-size: .72rem;
+    }
+    .contact-link strong { display: block; font-size: .75rem; }
+    .contact-link small { color: var(--muted); font-size: .67rem; display: block; margin-top: 2px; }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .info-list { display: grid; gap: 10px; }
+    .info {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info:last-child { border-bottom: 0; padding-bottom: 0; }
+    .info label { color: var(--muted-2); font-size: .72rem; }
+    .info span { text-align: right; font-size: .74rem; font-weight: 600; }
+
+    footer {
+      padding: 17px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted-2);
+      font-size: .67rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    @media (max-width: 820px) {
+      body { padding: 10px; }
+      .app { min-height: calc(100vh - 20px); border-radius: 20px; }
+      main { padding: 22px 16px; }
+      .two-col, .contact-grid, .bio-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-top: 20px; }
+    }
+
+    @media (max-width: 560px) {
+      header { padding: 14px; }
+      .brand-copy span { display: none; }
+      .theme-btn span { display: none; }
+      .nav { padding: 10px; grid-template-columns: repeat(2, 1fr); }
+      .mini-stats { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: 0; }
+      .hero h1 { font-size: 2.35rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <a href="#" class="brand" aria-label="Rumman Ahamed Khan home">
+        <div class="brand-mark">R</div>
+        <div class="brand-copy">
+          <strong>Rumman Ahamed Khan</strong>
+          <span>Computer Science Engineering · Cybersecurity</span>
+        </div>
+      </a>
+
+      <div class="top-actions">
+        <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span id="themeIcon">☾</span><span id="themeText">Dark</span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Portfolio navigation">
+      <button class="nav-btn active" data-view="home">Home</button>
+      <button class="nav-btn" data-view="resume">Resume & Skills</button>
+      <button class="nav-btn" data-view="contact">Contact</button>
+      <button class="nav-btn" data-view="biodata">Bio Data</button>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <section class="view active" id="home">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="status"><i></i> Open to internships & entry-level opportunities</div>
+
+            <div class="avatar">
+              <div class="avatar-inner">
+                <img src="photo rumman.jpg" alt="Portrait of Rumman Ahamed Khan"
+                     onerror="this.style.display='none'">
+              </div>
+            </div>
+
+            <h1>Hi, I'm <span>Rumman Ahamed Khan</span></h1>
+            <div class="hero-role">B.E. Computer Science Engineering · SJM Institute of Technology</div>
+            <p class="hero-desc">
+              Computer Science student building practical skills in cybersecurity, web development
+              and software projects. I learn by building, testing and continuously improving.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="resume.pdf" download>↓ Download Resume</a>
+              <button class="btn secondary" data-go="resume">View Skills</button>
+              <button class="btn secondary" data-go="contact">Let's Connect</button>
+            </div>
+
+            <div class="mini-stats">
+              <div class="stat">
+                <strong>Cybersecurity</strong>
+                <span>Core interest</span>
+              </div>
+              <div class="stat">
+                <strong>Web Development</strong>
+                <span>Project experience</span>
+              </div>
+              <div class="stat">
+                <strong>Continuous Learning</strong>
+                <span>Current focus</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUME -->
+      <section class="view" id="resume">
+        <div class="section-head">
+          <div class="eyebrow">career profile</div>
+          <h2>Resume & Skills</h2>
+          <p>A concise overview designed to present my education, practical exposure and technical foundation.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <h3>Education & Experience</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-title">B.E. in Computer Science</div>
+                <div class="timeline-meta">SJM Institute of Technology · Ongoing</div>
+                <div class="timeline-text">Currently pursuing engineering with a focus on computer science and practical technology skills.</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-title">Cybersecurity Internship</div>
+                <div class="timeline-meta">Future Interns · Web Application Security Testing</div>
+                <div class="timeline-text">Worked with OWASP Juice Shop and Burp Suite for basic web application security testing and explored simple SQL injection cases.</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-title">Project-Based Learning</div>
+                <div class="timeline-meta">Personal & Academic Projects</div>
+                <div class="timeline-text">Built projects to strengthen frontend development, programming fundamentals, cybersecurity concepts and problem-solving.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:20px">
+              <a class="btn primary" href="resume.pdf" download>↓ Download Full Resume</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Technical Skills</h3>
+            <div class="chips">
+              <span class="chip">C</span>
+              <span class="chip">C++</span>
+              <span class="chip">Python</span>
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Cybersecurity Fundamentals</span>
+              <span class="chip">Web Security Testing</span>
+              <span class="chip">Burp Suite</span>
+              <span class="chip">OWASP Juice Shop</span>
+              <span class="chip">SQL Injection Basics</span>
+              <span class="chip">Problem Solving</span>
+            </div>
+
+            <h3 style="margin-top:22px">Career Direction</h3>
+            <p>
+              Building a strong foundation for a career in cybersecurity and software development,
+              while continuing to develop programming, web and security skills through real projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:30px">
+          <div class="eyebrow">selected work</div>
+          <h2>Projects</h2>
+          <p>Practical work that demonstrates how I apply what I learn.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-top">
+              <div class="project-icon">01</div>
+            </div>
+            <h3>Flappy Bird Game</h3>
+            <p>Developed a game which is similar to Flappy Bird with same physics but with different parameters.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>UI/UX</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div class="project-icon">02</div>
+            </div>
+            <h3>Web Application Security Testing</h3>
+            <p>Security testing practice using OWASP Juice Shop and Burp Suite, including exploration of common web vulnerabilities and simple SQL injection cases.</p>
+            <div class="project-tags"><span>Burp Suite</span><span>OWASP</span><span>Web Security</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div class="project-icon">03</div>
+            </div>
+            <h3>Audio Visualizer</h3>
+            <p>Interactive browser visualizer using the Web Audio API and Canvas to analyze sound and render real-time visual effects.</p>
+            <div class="project-tags"><span>JavaScript</span><span>Web Audio API</span><span>Canvas</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div class="project-icon">04</div>
+            </div>
+            <h3>Personal Portfolio</h3>
+            <p>A responsive professional portfolio designed to present education, skills, projects, career direction and contact information in one place.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>Responsive</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="view" id="contact">
+        <div class="section-head">
+          <div class="eyebrow">connect</div>
+          <h2>Let's build something useful.</h2>
+          <p>For internships, project discussions, collaboration or professional networking.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Professional Links</h3>
+
+            <a class="contact-link" href="https://www.linkedin.com/in/rumman-ahamed-khan-314a05360/" target="_blank" rel="noopener">
+              <div class="contact-icon">in</div>
+              <div><strong>LinkedIn</strong><small>Professional profile & networking</small></div>
+            </a>
+
+            <a class="contact-link" href="mailto:rummanahamed07@gmail.com?subject=Portfolio%20Contact">
+              <div class="contact-icon">✉</div>
+              <div><strong>Email</strong><small>rummanahamed07@gmail.com</small></div>
+            </a>
+
+            <a class="contact-link" href="https://www.instagram.com/rumman_khan_435" target="_blank" rel="noopener">
+              <div class="contact-icon">IG</div>
+              <div><strong>Instagram</strong><small>@rumman_khan_435</small></div>
+            </a>
+          </div>
+
+          <div class="card">
+            <h3>Professional Snapshot</h3>
+            <p>
+              I am a Computer Science Engineering student interested in cybersecurity and web development.
+              My current goal is to turn academic knowledge into stronger practical experience through
+              internships, projects and continuous learning.
+            </p>
+
+            <div class="chips" style="margin-top:18px">
+              <span class="chip">Internships</span>
+              <span class="chip">Cybersecurity</span>
+              <span class="chip">Web Development</span>
+              <span class="chip">Projects</span>
+              <span class="chip">Collaboration</span>
+            </div>
+
+            <div style="margin-top:20px">
+              <a class="btn primary" href="mailto:rummanahamed07@gmail.com?subject=Professional%20Opportunity">Email Me →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BIO DATA -->
+      <section class="view" id="biodata">
+        <div class="section-head">
+          <div class="eyebrow">profile</div>
+          <h2>Bio Data</h2>
+          <p>Basic profile information. For a public career portfolio, sensitive personal details should be kept minimal.</p>
+        </div>
+
+        <div class="bio-grid">
+          <div class="card">
+            <h3>Personal Information</h3>
+            <div class="info-list">
+              <div class="info"><label>Full Name</label><span>Rumman Ahamed Khan</span></div>
+              <div class="info"><label>Date of Birth</label><span>07/05/2005</span></div>
+              <div class="info"><label>Nationality</label><span>Indian</span></div>
+              <div class="info"><label>Languages</label><span>English · Hindi · Kannada</span></div>
+              <div class="info"><label>Base</label><span>Chitradurga, Karnataka</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Career Profile</h3>
+            <div class="info-list">
+              <div class="info"><label>Degree</label><span>B.E. Computer Science</span></div>
+              <div class="info"><label>Institute</label><span>SJM Institute of Technology</span></div>
+              <div class="info"><label>Primary Interest</label><span>Cybersecurity</span></div>
+              <div class="info"><label>Secondary Interest</label><span>Web Development</span></div>
+              <div class="info"><label>Opportunity</label><span>Internships & entry-level roles</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Rumman Ahamed Khan</span>
+      <span class="mono">building • learning • securing</span>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const body = document.body;
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeText = document.getElementById("themeText");
+      const navButtons = document.querySelectorAll(".nav-btn");
+      const views = document.querySelectorAll(".view");
+
+      function setView(id) {
+        views.forEach(view => view.classList.toggle("active", view.id === id));
+        navButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.view === id));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      navButtons.forEach(btn => {
+        btn.addEventListener("click", () => setView(btn.dataset.view));
+      });
+
+      document.querySelectorAll("[data-go]").forEach(el => {
+        el.addEventListener("click", () => setView(el.dataset.go));
+      });
+
+      function updateTheme() {
+        const light = body.classList.contains("light");
+        themeIcon.textContent = light ? "☀" : "☾";
+        themeText.textContent = light ? "Light" : "Dark";
+        localStorage.setItem("portfolio-theme", light ? "light" : "dark");
+      }
+
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      if (savedTheme === "light") body.classList.add("light");
+      updateTheme();
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light");
+        updateTheme();
+      });
+    });
+  </script>
+</body>
+</html>
